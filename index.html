@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-PT"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Manual interativo de Programação em C# e .NET, com enquadramento teórico, exemplos, atividades e ficha de avaliação.">
 <title>Manual de Programação em C# (.NET)</title>
 <style>
 :root{--bg:#fff;--fg:#1c2330;--card:#f3f6fb;--ac:#5b2d91;--ok:#1b7f3b;--ko:#b3261e;--code:#1e1e2e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -17,69 +16,25 @@ h2.t{margin-top:0;color:var(--ac)}
 pre{background:var(--code);color:#e6e6e6;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px}
 svg{max-width:100%;height:auto}svg rect{fill:var(--bg);stroke:var(--ac);stroke-width:2}svg text{fill:var(--fg);font:12px system-ui,sans-serif}svg path{stroke:var(--ac);stroke-width:2;fill:none}
 .q{border-top:1px solid var(--ac);padding-top:10px;margin-top:10px}
-.o{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:1px solid var(--ac);border-radius:8px;background:var(--bg);color:var(--fg);cursor:pointer;font:inherit;transition:background .15s,border-color .15s}.o:before{content:"◯";display:inline-block;margin-right:10px;font-weight:bold}.o:hover:not(:disabled){border-width:2px;background:var(--card)}.o:focus-visible{outline:3px solid var(--ac);outline-offset:2px}.o:disabled{cursor:default;opacity:1}.o.ok:before{content:"✓"}.o.ko:before{content:"✕"}.question-hint{font-size:14px;margin:6px 0;color:var(--ac)}
+.o{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border:1px solid var(--ac);border-radius:8px;background:var(--bg);color:var(--fg);cursor:pointer;font:inherit}
 .o.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.o.ko{background:var(--ko);color:#fff;border-color:var(--ko)}
 .act{background:var(--bg);border-left:4px solid var(--ac);padding:6px 10px;border-radius:6px}.fb{font-size:14px;margin:4px 0}
 #bar{position:sticky;bottom:0;background:var(--ac);color:#fff;padding:12px 16px;border-radius:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 #bar input{padding:6px;border-radius:6px;border:0;flex:1;min-width:140px}#bar button{padding:8px 12px;border:0;border-radius:8px;cursor:pointer;font:inherit}
-@media (max-width:760px){body{display:block}nav{width:auto;height:auto;position:static;max-height:260px}main{padding:12px}}
-@media print{
-  body{display:block;background:#fff;color:#111;font-size:11pt}
-  nav,#bar,.o{display:none!important}
-  main{max-width:none;padding:0}
-  header,section{background:#fff!important;color:#111!important;border:1px solid #bbb;box-shadow:none;break-inside:avoid}
-  header{border-radius:0}
-  h1,h2,h3{color:#222!important}
-  pre{white-space:pre-wrap;overflow-wrap:anywhere;print-color-adjust:exact}
-  a{color:#111!important;text-decoration:none}
-  .q{break-inside:avoid}
-}
-
-/* Interatividade dos capítulos */
-#chapter-tools{background:var(--card);border:1px solid var(--ac);border-radius:12px;padding:12px;margin:0 0 18px}
-#chapter-tools .progress-track{height:10px;background:var(--bg);border:1px solid var(--ac);border-radius:20px;overflow:hidden;margin:8px 0}
-#chapter-tools .progress-fill{height:100%;width:0;background:var(--ok);transition:width .2s}
-.chapter-tools{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
-.chapter-tools button,#chapter-tools button{border:1px solid var(--ac);border-radius:7px;padding:6px 10px;background:var(--bg);color:var(--fg);cursor:pointer;font:inherit;font-size:14px}
-.chapter-tools button:disabled{opacity:.4;cursor:not-allowed}
-.chapter-tools button.done{background:var(--ok);color:#fff;border-color:var(--ok)}
-.chapter-content.collapsed{display:none}
-nav a.active{background:var(--ac);color:#fff}
-nav a.completed:after{content:" ✓";color:var(--ok);font-weight:bold}
-#chapter-tools .progress-label{font-size:14px}
-@media print{
- #chapter-tools,.chapter-tools{display:none!important}
- .chapter-content.collapsed{display:block!important}
-}
-
+@media (max-width:760px){body{display:block}nav{width:auto;height:auto;position:static}}
 </style></head><body>
 <nav><h2>Índice</h2><div id="idx"></div></nav>
 <main>
-<header><h1>Manual de Programação em C# (.NET)</h1><h6>EPG | Professora Maria Dias</h6><p><b>Objetivos:</b> produzir, depurar e testar código no Visual Studio com C#; programar por objetos e eventos; usar C# com bases de dados.</p><p>Cada tema tem teoria, exemplo, atividade e uma pergunta de treino. A <a href="#ficha" style="color:#fff">ficha de avaliação final</a> vale 20 valores. Descarrega o PDF com as respostas e cotação.</p></header>
-
-<div id="chapter-tools">
-  <b>O teu progresso nos capítulos</b>
-  <div class="progress-track"><div class="progress-fill" id="chapter-progress"></div></div>
-  <div class="progress-label" id="chapter-progress-label">0 capítulos concluídos</div>
-  <div class="chapter-tools">
-    <button type="button" id="open-all">Expandir todos</button>
-    <button type="button" id="close-all">Recolher todos</button>
-    <button type="button" id="clear-progress">Repor progresso</button>
-  </div>
-</div>
+<header><h1>Programação em C# (.NET)</h1><p><b>Objetivos:</b> produzir, depurar e testar código no Visual Studio com C#; programar por objetos e eventos; usar C# com bases de dados.</p><p>Cada tema tem teoria, exemplo, atividade e uma pergunta de treino. A <a href="#ficha" style="color:#fff">ficha de avaliação final</a> vale 20 valores. Descarrega o PDF com as respostas e cotação.</p></header>
 <div id="topics"></div>
-
-<div id="bar"><input id="nome" placeholder="O teu nome"><span id="sc"></span><button onclick="pdf()">Descarregar resultados PDF</button><button onclick="window.print()">Imprimir / Guardar manual em PDF</button><button onclick="reset()">Repor respostas</button></div>
+<div id="bar"><input id="nome" placeholder="O teu nome"><span id="sc"></span><button onclick="pdf()">Descarregar PDF</button><button onclick="reset()">Repor</button></div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 const T=[
 ["Introdução à programação e ao C#. Ambiente de desenvolvimento","O C# é uma linguagem orientada a objetos que corre sobre o .NET. Instala o Visual Studio (ou VS Code com o SDK .NET) e cria um projeto Console App.",`Console.WriteLine("Hello World!");`,["Código C#","Compilador","IL","CLR / JIT"],"Instalar e configurar o IDE; criar o primeiro projeto Hello World.",["Que plataforma executa o código C#?",".NET","JVM","Node.js"]],
-["Microsoft .NET Framework: CLR, FCL e CTS","O .NET Framework tem dois componentes principais: o CLR (Common Language Runtime), que executa o código IL e gere a memória, a segurança e as exceções, e a FCL (Framework Class Library), com as classes prontas a usar. O CTS (Common Type System) define os tipos comuns a todas as linguagens e o CLS (Common Language Specification) as regras que permitem às linguagens interoperar. O código compilado fica num assembly (.exe ou .dll) com IL e metadados.",`// int (C#) = System.Int32 (.NET)\nSystem.Int32 a = 5;\nConsole.WriteLine(a.GetType());   // System.Int32\nConsole.WriteLine(typeof(string)); // System.String`,["C#, VB, F#","IL + metadados","CLR","Sistema operativo"],"Mostrar o tipo .NET de várias variáveis com GetType() e identificar o assembly gerado pelo projeto.",["Que componente executa o código IL e gere a memória?","CLR","FCL","IDE"]],
-["Microsoft Visual Studio .NET: o IDE e a depuração","Uma Solution (.sln) contém um ou mais Projects (.csproj), que contêm ficheiros .cs. Janelas principais: Solution Explorer, Properties, Error List, Output e Toolbox. Compila com Ctrl+Shift+B. Na depuração: F9 (breakpoint), F5 (iniciar/continuar), F10 (passo sobre), F11 (passo para dentro) e as janelas Locals e Watch para ver variáveis. A configuração Debug inclui informação de depuração; a Release é otimizada.",`// 1. Coloca um breakpoint (F9) na linha seguinte\nint soma = 0;\nfor (int i = 1; i <= 3; i++)\n  soma += i;   // F10 e observa 'soma' em Locals\nConsole.WriteLine(soma);`,["Solution (.sln)","Project (.csproj)","Ficheiros .cs"],"Criar uma solution com dois projetos, colocar um breakpoint e inspecionar variáveis em Locals e Watch.",["Que tecla executa passo a passo, entrando nos métodos?","F11","F10","F5"]],
 ["Estrutura de um programa C#. Sintaxe básica","Um programa tem using, namespace, classe e o método Main (ponto de entrada). Cada instrução termina em ; e os blocos usam chavetas.",`using System;\nnamespace Aula {\n  class Program {\n    static void Main() {\n      Console.WriteLine("Olá!");\n    }\n  }\n}`,["using","namespace","class","Main"],"Analisar um programa; alterar mensagens com Console.WriteLine() e executar.",["Qual é o ponto de entrada de um programa C#?","Main","Start","Init"]],
 ["Variáveis, constantes e tipos de dados","Uma variável guarda um valor de um tipo: int, double, decimal, char, string, bool. Uma constante (const) não muda.",`int idade = 17;\ndouble altura = 1.75;\ndecimal preco = 9.99m;\nchar letra = 'A';\nstring nome = "Ana";\nbool ativo = true;\nconst double PI = 3.14159;`,0,"Criar variáveis de cada tipo e apresentar os valores no ecrã.",["Que tipo guarda um único carácter?","char","string","bool"]],
-["Variáveis value-type","Os value-types guardam o valor diretamente na variável (normalmente na stack): int, double, decimal, bool, char, struct e enum. Atribuir copia o valor, por isso alterar a cópia não afeta o original. Cada tipo tem um valor por omissão (0, false...). Para permitir null, usa-se o tipo anulável (int?). Uma struct agrupa campos relacionados; um enum define um conjunto de constantes com nome.",`struct Ponto { public int X, Y; }\nenum Dia { Seg, Ter, Qua }\n\nPonto p1 = new Ponto { X = 1, Y = 2 };\nPonto p2 = p1;   // cópia\np2.X = 9;        // p1.X continua 1\nint? nota = null;\nDia d = Dia.Ter;`,["p1 (X=1)","p2 (cópia)","p2.X = 9"],"Criar uma struct Ponto e um enum DiaSemana e demonstrar que atribuir copia o valor.",["Onde guarda um value-type o seu valor?","Diretamente na própria variável","Sempre num ficheiro","Numa referência para o heap"]],
 ["Operadores aritméticos, relacionais e lógicos","Aritméticos: + - * / %. Relacionais: == != < > <= >=. Lógicos: && (e), || (ou), ! (não).",`int a = 7, b = 3;\nConsole.WriteLine(a % b);        // 1\nConsole.WriteLine(a > b && b > 0); // True`,0,"Criar uma calculadora simples e comparar valores.",["Quanto vale 7 % 3?","1","2","0"]],
 ["Entrada de dados e conversão de tipos","Console.ReadLine() devolve sempre string. Converte com int.Parse(), double.Parse() ou Convert.ToInt32().",`Console.Write("Ano de nascimento: ");\nint ano = int.Parse(Console.ReadLine());\nConsole.WriteLine("Idade: " + (2026 - ano));`,["ReadLine","string","Parse","int"],"Programa que calcula idade, área e perímetro.",["Que tipo devolve Console.ReadLine()?","string","int","char"]],
 ["Estruturas condicionais if, else e else if","O if executa um bloco se a condição for verdadeira; else if testa outra condição; else trata os restantes casos.",`if (nota >= 10) Console.WriteLine("Aprovado");\nelse Console.WriteLine("Reprovado");`,["Condição?","Sim: bloco if","Não: bloco else"],"Verificar idade, maior de dois números e aprovação/reprovação.",["Que bloco corre se nenhuma condição anterior for verdadeira?","else","default","finally"]],
@@ -103,10 +58,7 @@ const T=[
 ["Indexadores","Um indexador permite aceder a um objeto como a um array, com this[...] e acessores get e set.",`class Turma {\n  string[] alunos = new string[30];\n  public string this[int i] {\n    get { return alunos[i]; }\n    set { alunos[i] = value; }\n  }\n}\n// turma[0] = "Ana";`,["turma[0]","this[int i]","alunos[0]"],"Criar uma classe Turma com indexador para os nomes dos alunos.",["Como se declara um indexador?","this[int i]","index(int i)","operator []"]],
 ["Construtores de classes","O construtor tem o nome da classe, não tem tipo de retorno e inicializa o objeto. Pode haver vários.",`class Produto {\n  public string Nome; public decimal Preco;\n  public Produto() { }\n  public Produto(string n, decimal p) { Nome = n; Preco = p; }\n}`,0,"Construtores por defeito e parametrizados; objetos com valores diferentes.",["Que nome tem o construtor?","O da classe","Main","new"]],
 ["Métodos de instância","Os métodos de instância dão comportamento aos objetos e usam os seus dados.",`public decimal CalcularTotal(int qtd) {\n  return Preco * qtd;\n}\npublic void MostrarDados() {\n  Console.WriteLine(Nome + " - " + Preco);\n}`,0,"Criar CalcularTotal(), MostrarDados() e CalcularMedia().",["Um método de instância é chamado através de...","Um objeto","Só da classe","Main"]],
-["Variáveis reference-type","Nos reference-types (class, string, arrays, delegates, interfaces) a variável guarda uma referência para o objeto, que vive no heap. Atribuir copia a referência, não o objeto: duas variáveis podem apontar para o mesmo objeto. Uma referência sem objeto vale null e usá-la gera NullReferenceException. As strings são reference-types imutáveis.",`Pessoa p1 = new Pessoa { Nome = "Ana" };\nPessoa p2 = p1;     // mesma referência\np2.Nome = "Rui";    // p1.Nome também é "Rui"\nPessoa p3 = null;\nif (p3 != null) Console.WriteLine(p3.Nome);`,["p1","Objeto (heap)","p2"],"Demonstrar que duas variáveis referenciam o mesmo objeto; testar null e comparar com um value-type.",["O que faz Pessoa p2 = p1;?","Ambas referenciam o mesmo objeto","Cria uma cópia do objeto","Apaga o objeto"]],
-["Criação e destruição de objetos","Um objeto cria-se com new, que aloca memória e chama o construtor. Membros static pertencem à classe e não ao objeto. A memória gerida é libertada pelo Garbage Collector (GC) quando o objeto deixa de ter referências, sem momento exato garantido. Recursos externos (ficheiros, ligações) devem libertar-se com IDisposable e a instrução using, que chama Dispose() no fim do bloco. O destrutor (~Classe) é chamado pelo GC e raramente é necessário.",`class Ligacao : IDisposable {\n  public Ligacao() { Console.WriteLine("Abre"); }\n  public void Dispose() { Console.WriteLine("Fecha"); }\n}\nusing (var l = new Ligacao()) {\n  // usa a ligação\n}   // Dispose() é chamado aqui`,["new","Em uso","Sem referências","Garbage Collector"],"Criar uma classe com construtor e Dispose() e usá-la dentro de um bloco using.",["Quando é libertada a memória de um objeto sem referências?","Quando o Garbage Collector atuar","Imediatamente, na linha seguinte","Nunca"]],
 ["Herança em C#","A classe derivada herda da base com ':'. Reutiliza código e representa a relação \"é um\".",`class Animal { public string Nome; }\nclass Cao : Animal {\n  public void Ladrar() { Console.WriteLine("Au!"); }\n}`,["Animal","Cao","Gato"],"Classes base e derivadas: Animal -> Cão/Gato; Veículo -> Carro/Mota.",["Qual a sintaxe de herança em C#?","class B : A","class B extends A","class B from A"]],
-["Agregação","Na agregação (e na composição) um objeto contém outros objetos: relação \"tem um\". Na herança a relação é \"é um\". Prefere agregação quando não existe uma verdadeira especialização, porque torna as classes menos dependentes umas das outras. Na composição, as partes não existem sem o todo; na agregação podem existir de forma independente.",`class Motor { public int Cv; }\nclass Carro {\n  public Motor Motor = new Motor { Cv = 90 };\n}\nclass Turma {\n  public List<Aluno> Alunos = new List<Aluno>();\n}`,["Carro","Motor","Rodas (x4)"],"Criar uma Turma que agrega vários Aluno e um Carro que agrega um Motor.",["Que relação traduz \"tem um\"?","Agregação","Herança","Sobrecarga"]],
 ["Polimorfismo e métodos override","Um método virtual pode ser redefinido com override nas classes derivadas, dando comportamentos diferentes.",`class Animal { public virtual string Som() => "..."; }\nclass Cao : Animal { public override string Som() => "Au!"; }\nclass Gato : Animal { public override string Som() => "Miau!"; }`,["Animal.Som()","Cao: Au!","Gato: Miau!"],"Implementar comportamentos diferentes em classes derivadas.",["Que palavra-chave redefine um método virtual?","override","new static","sealed"]],
 ["Classes abstratas e interfaces","Uma classe abstract não se instancia. Uma interface define um contrato que as classes têm de implementar.",`abstract class Forma { public abstract double Area(); }\ninterface IImprimivel { void Imprimir(); }\nclass Circulo : Forma {\n  public double R;\n  public override double Area() => 3.14 * R * R;\n}`,["Forma (abstract)","Circulo","Quadrado"],"Criar uma classe abstrata e uma interface simples.",["Pode instanciar-se uma classe abstrata?","Não","Sim","Só com new static"]],
 ["Operadores e eventos","Podes sobrecarregar operadores com a palavra operator. Os eventos baseiam-se em delegates: o publicador declara event e os subscritores ligam-se com +=.",`public static Ponto operator +(Ponto a, Ponto b)\n  => new Ponto(a.X + b.X, a.Y + b.Y);\n\npublic event EventHandler Clicado;\nbotao.Clicado += (s, e) => Console.WriteLine("Click!");`,["Publicador","event","Subscritor"],"Sobrecarregar o operador + numa classe e criar um evento com um subscritor.",["Que operador subscreve um evento?","+=","=>","::"]],
@@ -128,101 +80,14 @@ let S={};try{S=JSON.parse(localStorage.getItem("csq2")||"{}")}catch(e){}
 const save=()=>{try{localStorage.setItem("csq2",JSON.stringify(S))}catch(e){}};
 function dg(l){const n=l.length,w=(680-(n-1)*24)/n;let s=`<svg viewBox="0 0 700 60" role="img" aria-label="Diagrama">`;l.forEach((t,i)=>{const x=10+i*(w+24);s+=`<rect x="${x}" y="10" width="${w}" height="40" rx="8"/><text x="${x+w/2}" y="35" text-anchor="middle">${E(t)}</text>`;if(i<n-1)s+=`<path d="M${x+w+3} 30h18m-5-4l5 4-5 4"/>`});return s+"</svg>"}
 const QS=[];
-function qh(id,q,pts){QS.push({id,q,pts});const o=q.slice(1),r=QS.length%3,x=o.slice(r).concat(o.slice(0,r));return`<div class="q" id="${id}"><b>${E(q[0])}</b>${pts?` <small>(${pts} val.)</small>`:""}<p class="question-hint">Seleciona uma das respostas. A correção aparece automaticamente.</p>`+x.map(a=>`<button type="button" class="o" aria-pressed="false" data-q="${id}" data-a="${E(a)}">${E(a)}</button>`).join("")+`<div class="fb" aria-live="polite"></div></div>`}
-const tp=document.getElementById("topics"),ix=document.getElementById("idx");
-ix.innerHTML+=`<a href="#teoria"><b>Enquadramento teórico</b></a>`;
-let h=`<section id="teoria"><h2 class="t">Enquadramento teórico</h2>
-<p>Este tópico reúne a teoria de base necessária antes de começar a programar. Não tem atividade nem perguntas: serve de leitura e consulta.</p>
-<h3>1. O que é programar</h3>
-<p>Um <b>algoritmo</b> é uma sequência finita e ordenada de passos que resolve um problema. Um <b>programa</b> é um algoritmo escrito numa <b>linguagem de programação</b> que o computador consegue executar. Antes de escrever código, pensa no problema: que dados entram, que processamento é preciso e que resultado sai (entrada, processamento, saída).</p>
-<pre>Algoritmo: calcular a área de um retângulo
-1. Ler a base
-2. Ler a altura
-3. area = base x altura
-4. Mostrar area</pre>
-<h3>2. Paradigmas de programação</h3>
-<p><b>Programação estruturada</b>: o programa é construído com sequência, seleção (if, switch) e repetição (for, while). <b>Programação orientada a objetos (POO)</b>: o programa é um conjunto de objetos que guardam dados e têm comportamentos, com encapsulamento, herança e polimorfismo. <b>Programação orientada a eventos</b>: o código reage a acontecimentos, como o clique num botão. O C# suporta os três.</p>
-<h3>3. Da escrita ao programa a correr</h3>
-<p>O código-fonte (.cs) é traduzido pelo compilador para <b>IL</b> (Intermediate Language), guardada num assembly (.exe ou .dll). Na execução, o <b>CLR</b> (Common Language Runtime) usa o compilador <b>JIT</b> para converter a IL em código máquina e gere a memória (Garbage Collector). A <b>FCL</b> (Framework Class Library) fornece as classes prontas a usar, como Console, File e List.</p>
-<h3>4. Ciclo de desenvolvimento</h3>
-<p>Análise do problema, codificação, compilação, testes, depuração e manutenção. Este ciclo repete-se várias vezes ao longo de um projeto.</p>
-<h3>5. Tipos de erros</h3>
-<p><b>Erros de sintaxe</b>: o compilador não aceita o código (por exemplo, falta um ponto e vírgula). <b>Erros de execução</b> (exceções): o programa pára durante a execução (por exemplo, divisão por zero). <b>Erros de lógica</b>: o programa corre mas dá um resultado errado. Os de lógica são os mais difíceis de encontrar e resolvem-se com testes e depuração (breakpoints, execução passo a passo).</p>
-<h3>6. Vocabulário essencial</h3>
-<p><b>Variável</b>: espaço de memória com nome e tipo. <b>Tipo de dados</b>: define os valores possíveis (int, string, bool...). <b>Instrução</b>: uma ordem ao computador, terminada em ponto e vírgula. <b>Método</b>: bloco de código reutilizável. <b>Classe</b>: molde de objetos. <b>Objeto</b>: instância de uma classe. <b>Namespace</b>: agrupamento lógico de tipos. <b>Solution</b> e <b>Project</b>: contentores de ficheiros no Visual Studio.</p>
-</section>`;
-T.forEach((t,i)=>{ix.innerHTML+=`<a href="#t${i}" data-chapter-link="${i}">${i+1}. ${E(t[0])}</a>`;h+=`<section id="t${i}" class="chapter" data-chapter="${i}"><h2 class="t">${i+1}. ${E(t[0])}</h2><p>${t[1]}</p><pre data-i="${i}"></pre>${t[3]?dg(t[3]):""}<p class="act"><b>Atividade:</b> ${t[4]}</p>${t[5]?qh("p"+i,t[5],0):""}</section>`});
+function qh(id,q,pts){QS.push({id,q,pts});const o=q.slice(1),r=QS.length%3,x=o.slice(r).concat(o.slice(0,r));return`<div class="q" id="${id}"><b>${E(q[0])}</b>${pts?` <small>(${pts} val.)</small>`:""}`+x.map(a=>`<button class="o" data-q="${id}" data-a="${E(a)}">${E(a)}</button>`).join("")+`<div class="fb"></div></div>`}
+const tp=document.getElementById("topics"),ix=document.getElementById("idx");let h="";
+T.forEach((t,i)=>{ix.innerHTML+=`<a href="#t${i}">${i+1}. ${E(t[0])}</a>`;h+=`<section id="t${i}"><h2 class="t">${i+1}. ${E(t[0])}</h2><p>${t[1]}</p><pre data-i="${i}"></pre>${t[3]?dg(t[3]):""}<p class="act"><b>Atividade:</b> ${t[4]}</p>${t[5]?qh("p"+i,t[5],0):""}</section>`});
 ix.innerHTML+=`<a href="#ficha"><b>Ficha de avaliação final</b></a>`;
 h+=`<section id="ficha"><h2 class="t">Ficha de avaliação final (20 valores)</h2><p>10 perguntas, ${FV} valores cada. Só podes responder uma vez a cada pergunta.</p>`+F.map((q,i)=>qh("f"+i,q,FV)).join("")+"</section>";
 tp.innerHTML=h;document.querySelectorAll("pre").forEach(p=>p.textContent=T[p.dataset.i][2]);
-
-// Cada capítulo pode ser expandido/recolhido e marcado como concluído.
-const chapterStateKey="csharp-chapters-v1";
-let completedChapters=[];
-try{completedChapters=JSON.parse(localStorage.getItem(chapterStateKey)||"[]")}catch(e){completedChapters=[]}
-const chapters=[...document.querySelectorAll(".chapter")];
-chapters.forEach((section,i)=>{
-  const heading=section.querySelector("h2");
-  const content=document.createElement("div");
-  content.className="chapter-content";
-  while(heading.nextSibling) content.appendChild(heading.nextSibling);
-  section.appendChild(content);
-  const controls=document.createElement("div");
-  controls.className="chapter-tools";
-  controls.innerHTML=`<button type="button" class="toggle-chapter">Recolher capítulo</button>
-    <button type="button" class="complete-chapter">Marcar como concluído</button>
-    <button type="button" class="previous-chapter" ${i===0?"disabled":""}>← Capítulo anterior</button>
-    <button type="button" class="next-chapter" ${i===chapters.length-1?"disabled":""}>Capítulo seguinte →</button>`;
-  heading.insertAdjacentElement("afterend",controls);
-  controls.querySelector(".toggle-chapter").addEventListener("click",()=>{
-    const closed=content.classList.toggle("collapsed");
-    controls.querySelector(".toggle-chapter").textContent=closed?"Expandir capítulo":"Recolher capítulo";
-  });
-  controls.querySelector(".complete-chapter").addEventListener("click",()=>{
-    if(completedChapters.includes(i)) completedChapters=completedChapters.filter(x=>x!==i);
-    else completedChapters.push(i);
-    saveChapterProgress(); updateChapterProgress();
-  });
-  controls.querySelector(".previous-chapter").addEventListener("click",()=>chapters[i-1]?.scrollIntoView({behavior:"smooth"}));
-  controls.querySelector(".next-chapter").addEventListener("click",()=>chapters[i+1]?.scrollIntoView({behavior:"smooth"}));
-});
-function saveChapterProgress(){
-  try{localStorage.setItem(chapterStateKey,JSON.stringify(completedChapters))}catch(e){}
-}
-function updateChapterProgress(){
-  const count=completedChapters.length;
-  document.getElementById("chapter-progress").style.width=(count/chapters.length*100)+"%";
-  document.getElementById("chapter-progress-label").textContent=`${count} de ${chapters.length} capítulos concluídos`;
-  chapters.forEach((section,i)=>{
-    const b=section.querySelector(".complete-chapter");
-    const done=completedChapters.includes(i);
-    b.textContent=done?"✓ Capítulo concluído (anular)":"Marcar como concluído";
-    b.classList.toggle("done",done);
-    const link=document.querySelector(`[data-chapter-link="${i}"]`);
-    if(link)link.classList.toggle("completed",done);
-  });
-}
-document.getElementById("open-all").addEventListener("click",()=>{
-  chapters.forEach(s=>{s.querySelector(".chapter-content").classList.remove("collapsed");s.querySelector(".toggle-chapter").textContent="Recolher capítulo"});
-});
-document.getElementById("close-all").addEventListener("click",()=>{
-  chapters.forEach(s=>{s.querySelector(".chapter-content").classList.add("collapsed");s.querySelector(".toggle-chapter").textContent="Expandir capítulo"});
-});
-document.getElementById("clear-progress").addEventListener("click",()=>{
-  if(confirm("Queres repor o progresso de todos os capítulos?")){completedChapters=[];saveChapterProgress();updateChapterProgress()}
-});
-const chapterLinks=[...document.querySelectorAll("[data-chapter-link]")];
-const chapterObserver=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      chapterLinks.forEach(a=>a.classList.toggle("active",a.dataset.chapterLink===entry.target.dataset.chapter));
-    }
-  });
-},{rootMargin:"-15% 0px -70% 0px"});
-chapters.forEach(s=>chapterObserver.observe(s));
-updateChapterProgress();
-function paint(){let pr=0,np=0,pts=0,nf=0;QS.forEach(({id,q,pts:p})=>{const box=document.getElementById(id),c=S[id];box.querySelectorAll(".o").forEach(b=>{b.className="o";b.setAttribute("aria-pressed",String(c!==undefined&&b.dataset.a===c));if(c!==undefined){b.disabled=true;if(b.dataset.a===q[1])b.classList.add("ok");else if(b.dataset.a===c)b.classList.add("ko")}});
-const fb=box.querySelector(".fb"),ok=c===q[1];fb.textContent=c===undefined?"Ainda não respondeste a esta pergunta.":ok?"✓ Correto! Muito bem!":"✕ Não está correto. Resposta certa: "+q[1];
+function paint(){let pr=0,np=0,pts=0,nf=0;QS.forEach(({id,q,pts:p})=>{const box=document.getElementById(id),c=S[id];box.querySelectorAll(".o").forEach(b=>{b.className="o";if(c!==undefined){b.disabled=true;if(b.dataset.a===q[1])b.classList.add("ok");else if(b.dataset.a===c)b.classList.add("ko")}});
+const fb=box.querySelector(".fb"),ok=c===q[1];fb.textContent=c===undefined?"":ok?"Correto!":"Incorreto. Resposta certa: "+q[1];
 if(id[0]=="p"){np++;if(ok)pr++}else if(c!==undefined){nf++;if(ok)pts+=FV}});
 document.getElementById("sc").textContent=`Treino: ${pr}/${np} certas | Ficha: ${pts}/20 (${nf}/${F.length})`;return{pr,np,pts}}
 tp.addEventListener("click",e=>{const b=e.target.closest(".o");if(!b||S[b.dataset.q]!==undefined)return;S[b.dataset.q]=b.dataset.a;save();paint()});

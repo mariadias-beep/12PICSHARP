@@ -17,7 +17,7 @@ h2.t{margin-top:0;color:var(--ac)}
 pre{background:var(--code);color:#e6e6e6;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px}
 svg{max-width:100%;height:auto}svg rect{fill:var(--bg);stroke:var(--ac);stroke-width:2}svg text{fill:var(--fg);font:12px system-ui,sans-serif}svg path{stroke:var(--ac);stroke-width:2;fill:none}
 .q{border-top:1px solid var(--ac);padding-top:10px;margin-top:10px}
-.o{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border:1px solid var(--ac);border-radius:8px;background:var(--bg);color:var(--fg);cursor:pointer;font:inherit}
+.o{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:1px solid var(--ac);border-radius:8px;background:var(--bg);color:var(--fg);cursor:pointer;font:inherit;transition:background .15s,border-color .15s}.o:before{content:"◯";display:inline-block;margin-right:10px;font-weight:bold}.o:hover:not(:disabled){border-width:2px;background:var(--card)}.o:focus-visible{outline:3px solid var(--ac);outline-offset:2px}.o:disabled{cursor:default;opacity:1}.o.ok:before{content:"✓"}.o.ko:before{content:"✕"}.question-hint{font-size:14px;margin:6px 0;color:var(--ac)}
 .o.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.o.ko{background:var(--ko);color:#fff;border-color:var(--ko)}
 .act{background:var(--bg);border-left:4px solid var(--ac);padding:6px 10px;border-radius:6px}.fb{font-size:14px;margin:4px 0}
 #bar{position:sticky;bottom:0;background:var(--ac);color:#fff;padding:12px 16px;border-radius:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -34,11 +34,41 @@ svg{max-width:100%;height:auto}svg rect{fill:var(--bg);stroke:var(--ac);stroke-w
   a{color:#111!important;text-decoration:none}
   .q{break-inside:avoid}
 }
+
+/* Interatividade dos capítulos */
+#chapter-tools{background:var(--card);border:1px solid var(--ac);border-radius:12px;padding:12px;margin:0 0 18px}
+#chapter-tools .progress-track{height:10px;background:var(--bg);border:1px solid var(--ac);border-radius:20px;overflow:hidden;margin:8px 0}
+#chapter-tools .progress-fill{height:100%;width:0;background:var(--ok);transition:width .2s}
+.chapter-tools{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.chapter-tools button,#chapter-tools button{border:1px solid var(--ac);border-radius:7px;padding:6px 10px;background:var(--bg);color:var(--fg);cursor:pointer;font:inherit;font-size:14px}
+.chapter-tools button:disabled{opacity:.4;cursor:not-allowed}
+.chapter-tools button.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+.chapter-content.collapsed{display:none}
+nav a.active{background:var(--ac);color:#fff}
+nav a.completed:after{content:" ✓";color:var(--ok);font-weight:bold}
+#chapter-tools .progress-label{font-size:14px}
+@media print{
+ #chapter-tools,.chapter-tools{display:none!important}
+ .chapter-content.collapsed{display:block!important}
+}
+
 </style></head><body>
 <nav><h2>Índice</h2><div id="idx"></div></nav>
 <main>
 <header><h1>Manual de Programação em C# (.NET)</h1><h6>EPG | Professora Maria Dias</h6><p><b>Objetivos:</b> produzir, depurar e testar código no Visual Studio com C#; programar por objetos e eventos; usar C# com bases de dados.</p><p>Cada tema tem teoria, exemplo, atividade e uma pergunta de treino. A <a href="#ficha" style="color:#fff">ficha de avaliação final</a> vale 20 valores. Descarrega o PDF com as respostas e cotação.</p></header>
+
+<div id="chapter-tools">
+  <b>O teu progresso nos capítulos</b>
+  <div class="progress-track"><div class="progress-fill" id="chapter-progress"></div></div>
+  <div class="progress-label" id="chapter-progress-label">0 capítulos concluídos</div>
+  <div class="chapter-tools">
+    <button type="button" id="open-all">Expandir todos</button>
+    <button type="button" id="close-all">Recolher todos</button>
+    <button type="button" id="clear-progress">Repor progresso</button>
+  </div>
+</div>
 <div id="topics"></div>
+
 <div id="bar"><input id="nome" placeholder="O teu nome"><span id="sc"></span><button onclick="pdf()">Descarregar resultados PDF</button><button onclick="window.print()">Imprimir / Guardar manual em PDF</button><button onclick="reset()">Repor respostas</button></div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -98,7 +128,7 @@ let S={};try{S=JSON.parse(localStorage.getItem("csq2")||"{}")}catch(e){}
 const save=()=>{try{localStorage.setItem("csq2",JSON.stringify(S))}catch(e){}};
 function dg(l){const n=l.length,w=(680-(n-1)*24)/n;let s=`<svg viewBox="0 0 700 60" role="img" aria-label="Diagrama">`;l.forEach((t,i)=>{const x=10+i*(w+24);s+=`<rect x="${x}" y="10" width="${w}" height="40" rx="8"/><text x="${x+w/2}" y="35" text-anchor="middle">${E(t)}</text>`;if(i<n-1)s+=`<path d="M${x+w+3} 30h18m-5-4l5 4-5 4"/>`});return s+"</svg>"}
 const QS=[];
-function qh(id,q,pts){QS.push({id,q,pts});const o=q.slice(1),r=QS.length%3,x=o.slice(r).concat(o.slice(0,r));return`<div class="q" id="${id}"><b>${E(q[0])}</b>${pts?` <small>(${pts} val.)</small>`:""}`+x.map(a=>`<button class="o" data-q="${id}" data-a="${E(a)}">${E(a)}</button>`).join("")+`<div class="fb"></div></div>`}
+function qh(id,q,pts){QS.push({id,q,pts});const o=q.slice(1),r=QS.length%3,x=o.slice(r).concat(o.slice(0,r));return`<div class="q" id="${id}"><b>${E(q[0])}</b>${pts?` <small>(${pts} val.)</small>`:""}<p class="question-hint">Seleciona uma das respostas. A correção aparece automaticamente.</p>`+x.map(a=>`<button type="button" class="o" aria-pressed="false" data-q="${id}" data-a="${E(a)}">${E(a)}</button>`).join("")+`<div class="fb" aria-live="polite"></div></div>`}
 const tp=document.getElementById("topics"),ix=document.getElementById("idx");
 ix.innerHTML+=`<a href="#teoria"><b>Enquadramento teórico</b></a>`;
 let h=`<section id="teoria"><h2 class="t">Enquadramento teórico</h2>
@@ -121,12 +151,78 @@ let h=`<section id="teoria"><h2 class="t">Enquadramento teórico</h2>
 <h3>6. Vocabulário essencial</h3>
 <p><b>Variável</b>: espaço de memória com nome e tipo. <b>Tipo de dados</b>: define os valores possíveis (int, string, bool...). <b>Instrução</b>: uma ordem ao computador, terminada em ponto e vírgula. <b>Método</b>: bloco de código reutilizável. <b>Classe</b>: molde de objetos. <b>Objeto</b>: instância de uma classe. <b>Namespace</b>: agrupamento lógico de tipos. <b>Solution</b> e <b>Project</b>: contentores de ficheiros no Visual Studio.</p>
 </section>`;
-T.forEach((t,i)=>{ix.innerHTML+=`<a href="#t${i}">${i+1}. ${E(t[0])}</a>`;h+=`<section id="t${i}"><h2 class="t">${i+1}. ${E(t[0])}</h2><p>${t[1]}</p><pre data-i="${i}"></pre>${t[3]?dg(t[3]):""}<p class="act"><b>Atividade:</b> ${t[4]}</p>${t[5]?qh("p"+i,t[5],0):""}</section>`});
+T.forEach((t,i)=>{ix.innerHTML+=`<a href="#t${i}" data-chapter-link="${i}">${i+1}. ${E(t[0])}</a>`;h+=`<section id="t${i}" class="chapter" data-chapter="${i}"><h2 class="t">${i+1}. ${E(t[0])}</h2><p>${t[1]}</p><pre data-i="${i}"></pre>${t[3]?dg(t[3]):""}<p class="act"><b>Atividade:</b> ${t[4]}</p>${t[5]?qh("p"+i,t[5],0):""}</section>`});
 ix.innerHTML+=`<a href="#ficha"><b>Ficha de avaliação final</b></a>`;
 h+=`<section id="ficha"><h2 class="t">Ficha de avaliação final (20 valores)</h2><p>10 perguntas, ${FV} valores cada. Só podes responder uma vez a cada pergunta.</p>`+F.map((q,i)=>qh("f"+i,q,FV)).join("")+"</section>";
 tp.innerHTML=h;document.querySelectorAll("pre").forEach(p=>p.textContent=T[p.dataset.i][2]);
-function paint(){let pr=0,np=0,pts=0,nf=0;QS.forEach(({id,q,pts:p})=>{const box=document.getElementById(id),c=S[id];box.querySelectorAll(".o").forEach(b=>{b.className="o";if(c!==undefined){b.disabled=true;if(b.dataset.a===q[1])b.classList.add("ok");else if(b.dataset.a===c)b.classList.add("ko")}});
-const fb=box.querySelector(".fb"),ok=c===q[1];fb.textContent=c===undefined?"":ok?"Correto!":"Incorreto. Resposta certa: "+q[1];
+
+// Cada capítulo pode ser expandido/recolhido e marcado como concluído.
+const chapterStateKey="csharp-chapters-v1";
+let completedChapters=[];
+try{completedChapters=JSON.parse(localStorage.getItem(chapterStateKey)||"[]")}catch(e){completedChapters=[]}
+const chapters=[...document.querySelectorAll(".chapter")];
+chapters.forEach((section,i)=>{
+  const heading=section.querySelector("h2");
+  const content=document.createElement("div");
+  content.className="chapter-content";
+  while(heading.nextSibling) content.appendChild(heading.nextSibling);
+  section.appendChild(content);
+  const controls=document.createElement("div");
+  controls.className="chapter-tools";
+  controls.innerHTML=`<button type="button" class="toggle-chapter">Recolher capítulo</button>
+    <button type="button" class="complete-chapter">Marcar como concluído</button>
+    <button type="button" class="previous-chapter" ${i===0?"disabled":""}>← Capítulo anterior</button>
+    <button type="button" class="next-chapter" ${i===chapters.length-1?"disabled":""}>Capítulo seguinte →</button>`;
+  heading.insertAdjacentElement("afterend",controls);
+  controls.querySelector(".toggle-chapter").addEventListener("click",()=>{
+    const closed=content.classList.toggle("collapsed");
+    controls.querySelector(".toggle-chapter").textContent=closed?"Expandir capítulo":"Recolher capítulo";
+  });
+  controls.querySelector(".complete-chapter").addEventListener("click",()=>{
+    if(completedChapters.includes(i)) completedChapters=completedChapters.filter(x=>x!==i);
+    else completedChapters.push(i);
+    saveChapterProgress(); updateChapterProgress();
+  });
+  controls.querySelector(".previous-chapter").addEventListener("click",()=>chapters[i-1]?.scrollIntoView({behavior:"smooth"}));
+  controls.querySelector(".next-chapter").addEventListener("click",()=>chapters[i+1]?.scrollIntoView({behavior:"smooth"}));
+});
+function saveChapterProgress(){
+  try{localStorage.setItem(chapterStateKey,JSON.stringify(completedChapters))}catch(e){}
+}
+function updateChapterProgress(){
+  const count=completedChapters.length;
+  document.getElementById("chapter-progress").style.width=(count/chapters.length*100)+"%";
+  document.getElementById("chapter-progress-label").textContent=`${count} de ${chapters.length} capítulos concluídos`;
+  chapters.forEach((section,i)=>{
+    const b=section.querySelector(".complete-chapter");
+    const done=completedChapters.includes(i);
+    b.textContent=done?"✓ Capítulo concluído (anular)":"Marcar como concluído";
+    b.classList.toggle("done",done);
+    const link=document.querySelector(`[data-chapter-link="${i}"]`);
+    if(link)link.classList.toggle("completed",done);
+  });
+}
+document.getElementById("open-all").addEventListener("click",()=>{
+  chapters.forEach(s=>{s.querySelector(".chapter-content").classList.remove("collapsed");s.querySelector(".toggle-chapter").textContent="Recolher capítulo"});
+});
+document.getElementById("close-all").addEventListener("click",()=>{
+  chapters.forEach(s=>{s.querySelector(".chapter-content").classList.add("collapsed");s.querySelector(".toggle-chapter").textContent="Expandir capítulo"});
+});
+document.getElementById("clear-progress").addEventListener("click",()=>{
+  if(confirm("Queres repor o progresso de todos os capítulos?")){completedChapters=[];saveChapterProgress();updateChapterProgress()}
+});
+const chapterLinks=[...document.querySelectorAll("[data-chapter-link]")];
+const chapterObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      chapterLinks.forEach(a=>a.classList.toggle("active",a.dataset.chapterLink===entry.target.dataset.chapter));
+    }
+  });
+},{rootMargin:"-15% 0px -70% 0px"});
+chapters.forEach(s=>chapterObserver.observe(s));
+updateChapterProgress();
+function paint(){let pr=0,np=0,pts=0,nf=0;QS.forEach(({id,q,pts:p})=>{const box=document.getElementById(id),c=S[id];box.querySelectorAll(".o").forEach(b=>{b.className="o";b.setAttribute("aria-pressed",String(c!==undefined&&b.dataset.a===c));if(c!==undefined){b.disabled=true;if(b.dataset.a===q[1])b.classList.add("ok");else if(b.dataset.a===c)b.classList.add("ko")}});
+const fb=box.querySelector(".fb"),ok=c===q[1];fb.textContent=c===undefined?"Ainda não respondeste a esta pergunta.":ok?"✓ Correto! Muito bem!":"✕ Não está correto. Resposta certa: "+q[1];
 if(id[0]=="p"){np++;if(ok)pr++}else if(c!==undefined){nf++;if(ok)pts+=FV}});
 document.getElementById("sc").textContent=`Treino: ${pr}/${np} certas | Ficha: ${pts}/20 (${nf}/${F.length})`;return{pr,np,pts}}
 tp.addEventListener("click",e=>{const b=e.target.closest(".o");if(!b||S[b.dataset.q]!==undefined)return;S[b.dataset.q]=b.dataset.a;save();paint()});
